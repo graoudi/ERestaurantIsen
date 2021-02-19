@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ERestaurant</string>
+    <string name="title">Commandez en ligne : </string>
+    <string name="buttonStarters">Entrés </string>
+    <string name="buttonDishes">Plats </string>
+    <string name="buttonDessert">Desserts</string>
+    <string name="backStarters"> Entrés </string>
+    <string name="backDishes"> Plats </string>
+    <string name="backSDesserts"> Desserts </string>
+    <string name="buttonBack">Entrée | Plats | Desserts </string>
+    <string name="categorie_title">titre</string>
+    <string name="itemRedirection">test</string>
+
+</resources>
