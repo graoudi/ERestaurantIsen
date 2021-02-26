@@ -29,15 +29,15 @@ class RecyclerAdapter(
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         val dish = entries[position]
         holder.textTitle.text = entries[position].name
-        //holder.textPrice.text = dish.priceItem
+        holder.textPrice.text = entries[position].FormatPrice()
         if(entries[position].urlImage().isNullOrEmpty()){
             Picasso.get()
-                .load("drawable/logo.jpg")
+                .load("http://i.imgur.com/DvpvklR.png")
                 .into(holder.textPicture)
         }
         else{
         Picasso.get()
-            .load(entries[position].urlImage())
+            .load(dish.urlImage())
             .into(holder.textPicture) }
 
         holder.layout.setOnClickListener { listener.invoke(entries[position]) }
