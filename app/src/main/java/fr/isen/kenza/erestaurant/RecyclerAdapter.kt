@@ -3,22 +3,22 @@ package fr.isen.kenza.erestaurant
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.kenza.erestaurant.categories.Dish
+import com.squareup.picasso.Picasso
+import fr.isen.kenza.erestaurant.Data.Dish
 import fr.isen.kenza.erestaurant.databinding.DishesDetailBinding
 
 
 class RecyclerAdapter(
-        private val entries: List<Dish>,
-        private val listener: onItemClickListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+    private val entries: List<Dish>,
+    private val listener:  (Dish) -> Unit): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = DishesDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding.root)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -28,18 +28,31 @@ class RecyclerAdapter(
 
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         val dish = entries[position]
-        holder.textTitle.text = dish.titleName
-        holder.textPrice.text = dish.priceItem
-        holder.itemView.setOnClickListener { listener.onItemClick(dish) }
+        holder.textTitle.text = entries[position].name
+        //holder.textPrice.text = dish.priceItem
+        if(entries[position].urlImage().isNullOrEmpty()){
+            Picasso.get()
+                .load("drawable/logo.jpg")
+                .into(holder.textPicture)
+        }
+        else{
+        Picasso.get()
+            .load(entries[position].urlImage())
+            .into(holder.textPicture) }
+
+        holder.layout.setOnClickListener { listener.invoke(entries[position]) }
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var textTitle: TextView = itemView.findViewById(R.id.categoryName)
-        var textPicture: ImageView  = itemView.findViewById(R.id.catagoryImage)
-        var textPrice: TextView = itemView.findViewById(R.id.categoryprice)
+  inner class ViewHolder(binding : DishesDetailBinding) : RecyclerView.ViewHolder(binding.root){
+      val textTitle = binding.categoryName
+      val textPicture= binding.catagoryImage
+      val textPrice = binding.categoryprice
+      val layout = itemView.findViewById<View>(R.id.cellDetail)
 
-    }
+
+  }
     interface  onItemClickListener{
+
         fun onItemClick(dish: Dish)
     }
 }

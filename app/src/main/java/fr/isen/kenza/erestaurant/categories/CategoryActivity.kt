@@ -1,35 +1,25 @@
 package fr.isen.kenza.erestaurant.categories
 
-import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.gson.GsonBuilder
+import fr.isen.kenza.erestaurant.Data.Dish
+import fr.isen.kenza.erestaurant.Data.ResultData
 import fr.isen.kenza.erestaurant.HomeActivity
-import fr.isen.kenza.erestaurant.R
 import fr.isen.kenza.erestaurant.RecyclerAdapter
 import fr.isen.kenza.erestaurant.databinding.ActivityCategoriesBinding
-import org.json.JSONArray
-import org.json.JSONException
 import org.json.JSONObject
-
+import javax.xml.transform.Result
 
 enum class ItemType {
     STARTER, DISHES, DESSERT;
 }
-
 
 class CategoryActivity : AppCompatActivity(), RecyclerAdapter.onItemClickListener {
 
@@ -42,10 +32,15 @@ class CategoryActivity : AppCompatActivity(), RecyclerAdapter.onItemClickListene
         val selectedItem = intent.getSerializableExtra(HomeActivity.CATEGORY_NAME) as? ItemType
 
         binding.categorieTitle.text = getCategorieTitle(selectedItem)
-        binding.recyclerList.adapter = RecyclerAdapter(listOf(Dish("titre", 0, "price")), this)
-        binding.recyclerList.layoutManager = LinearLayoutManager(this)
+        /*binding.recyclerList.adapter = RecyclerAdapter(listOf(Dish("titre", 0, "price"),
+                Dish("titre", 0, "price"),
+                Dish("titre", 0, "price")),
+                this)
+                */
 
 
+
+        getData(getCategorieTitle(selectedItem))
     }
 
     private fun getCategorieTitle(item: ItemType?): String {
@@ -58,42 +53,43 @@ class CategoryActivity : AppCompatActivity(), RecyclerAdapter.onItemClickListene
     }
 
     override fun onItemClick(dish: Dish) {
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, "clicked", duration) //affiche msg a l'ecran
-        toast.show()
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra("dish", dish)
         startActivity(intent)
     }
 
-    private fun getData() {
-        val requestQueue = Volley.newRequestQueue(this)
-        var url = "http://test.api.catering.bluecodegames.com/"
-        val param = JSONObject()
-
-        try {
-            param.put("id_shop", "1")
-        } catch (e: JSONException) {
-            val toast = Toast.makeText(applicationContext, "erreur", Toast.LENGTH_SHORT).show()
-
-        }
+    private fun getData(category: String?) {
+        val url = "http://test.api.catering.bluecodegames.com/menu"
+        val requestQueue= Volley.newRequestQueue(this)
+        val param = JSONObject().put("id_shop", "1")
 
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, url, param,
-            Response.Listener { response ->
-                val data = Dish()
-                data.titleName = response.getString("title")
-                data.priceItem= response.getString("prix")
+            {
+                val dataResult = GsonBuilder().create().fromJson(it.toString(), ResultData::class.java)
+                dataResult.data.firstOrNull(){
+                    it.name == category
+                }?.items?.let{
+                items -> itemDisplay(items)
+                }
+
+                //Log.d("test json", it.toString())
             },
-            Response.ErrorListener { error ->
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(applicationContext, "erreur", duration) //affiche msg a l'ecran
-                toast.show()
+            { error ->
+               error.printStackTrace()
             }
         )
-
-        // Access the RequestQueue through your singleton class.
         requestQueue.add(jsonObjectRequest)
     }
 
+
+    private fun  itemDisplay(items: List<Dish>){
+        binding.recyclerList.layoutManager = LinearLayoutManager(this)
+        binding.recyclerList.adapter = RecyclerAdapter(items) {
+            val intent = Intent(this, DetailsActivity::class.java)
+            intent.putExtra("items",it)
+            startActivity(intent)
+        }
+
+    }
 
 }
