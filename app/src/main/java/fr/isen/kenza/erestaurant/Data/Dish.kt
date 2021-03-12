@@ -19,8 +19,10 @@ data class Dish(@SerializedName("name_fr") val name: String,
            null
        }
 
+
     fun getPrice() = prices[0].price + "€"
-    fun FormatPrice()= prices[0].price  + "€"
+    fun formatPrice()= prices[0].price  + "€"
+    fun getJustPrice() = prices[0].price
 
 
 }

@@ -10,5 +10,9 @@
     <string name="buttonBack">Entrée | Plats | Desserts </string>
     <string name="categorie_title">titre</string>
     <string name="itemRedirection">test</string>
+    <string name="addButton">Plus</string>
+    <string name="removeButton">Moins</string>
+    <string name="commandButton">Ajouter</string>
+
 
 </resources>

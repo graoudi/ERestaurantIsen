@@ -29,7 +29,7 @@ class RecyclerAdapter(
     override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
         val dish = entries[position]
         holder.textTitle.text = entries[position].name
-        holder.textPrice.text = entries[position].FormatPrice()
+        holder.textPrice.text = entries[position].formatPrice()
         if(entries[position].urlImage().isNullOrEmpty()){
             Picasso.get()
                 .load("http://i.imgur.com/DvpvklR.png")
