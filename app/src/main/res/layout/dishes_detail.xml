@@ -38,11 +38,11 @@
         android:id="@+id/categoryprice"
         android:layout_width="63dp"
         android:layout_height="21dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="34dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/catagoryImage"
-        app:layout_constraintTop_toBottomOf="@+id/categoryName" />
+        app:layout_constraintStart_toEndOf="@+id/categoryName"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

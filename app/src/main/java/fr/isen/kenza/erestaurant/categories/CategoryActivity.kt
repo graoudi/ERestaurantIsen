@@ -21,7 +21,7 @@ enum class ItemType {
     STARTER, DISHES, DESSERT;
 }
 
-class CategoryActivity : AppCompatActivity(), RecyclerAdapter.onItemClickListener {
+class CategoryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCategoriesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,12 +52,6 @@ class CategoryActivity : AppCompatActivity(), RecyclerAdapter.onItemClickListene
         }
     }
 
-    override fun onItemClick(dish: Dish) {
-        val intent = Intent(this, DetailsActivity::class.java)
-        intent.putExtra("dish", dish)
-        startActivity(intent)
-    }
-
     private fun getData(category: String?) {
         val url = "http://test.api.catering.bluecodegames.com/menu"
         val requestQueue= Volley.newRequestQueue(this)
@@ -85,8 +79,8 @@ class CategoryActivity : AppCompatActivity(), RecyclerAdapter.onItemClickListene
     private fun  itemDisplay(items: List<Dish>){
         binding.recyclerList.layoutManager = LinearLayoutManager(this)
         binding.recyclerList.adapter = RecyclerAdapter(items) {
-            val intent = Intent(this, DetailsActivity::class.java)
-            intent.putExtra("items",it)
+            val intent = Intent(this, DetailsActivities::class.java)
+            intent.putExtra("dish",it)
             startActivity(intent)
         }
 

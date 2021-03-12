@@ -13,15 +13,17 @@ class CarousselFragment(private val entries: List<Dish>): Fragment(){
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding= CarousselItemBinding.inflate(inflater, container, false)
-        return binding.root
+        val test= binding.root
+        return test
     }
 
-    override fun onCreate(binding: CarousselItemBinding, savedInstanceState: Bundle?, position : Int ) {
+    /*override fun onCreate(binding: CarousselItemBinding, position : Int, savedInstanceState: Bundle) {
+        super.onCreate(savedInstanceState)
         Picasso.get()
                 .load(entries[position].urlImage())
                 .into(binding.imageCarousel)
 
-    }
-
+    } */
+//View pager
 
 }
