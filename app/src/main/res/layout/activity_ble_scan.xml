@@ -42,10 +42,12 @@
         app:layout_constraintTop_toBottomOf="@+id/bleScanTitle" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerBleScan"
         android:layout_width="185dp"
         android:layout_height="350dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 

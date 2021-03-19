@@ -3,8 +3,6 @@ package fr.isen.kenza.erestaurant
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.kenza.erestaurant.Data.Dish
@@ -47,7 +45,7 @@ class RecyclerAdapter(
       val textTitle = binding.categoryName
       val textPicture= binding.catagoryImage
       val textPrice = binding.categoryprice
-      val layout = itemView.findViewById<View>(R.id.cellDetail)
+      val layout = itemView.findViewById<View>(R.id.cellBleList)
 
 
   }

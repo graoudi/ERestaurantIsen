@@ -3,7 +3,6 @@ package fr.isen.kenza.erestaurant.categories
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
@@ -15,7 +14,6 @@ import fr.isen.kenza.erestaurant.HomeActivity
 import fr.isen.kenza.erestaurant.RecyclerAdapter
 import fr.isen.kenza.erestaurant.databinding.ActivityCategoriesBinding
 import org.json.JSONObject
-import javax.xml.transform.Result
 
 enum class ItemType {
     STARTER, DISHES, DESSERT;
