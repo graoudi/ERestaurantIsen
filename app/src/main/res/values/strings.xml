@@ -13,6 +13,9 @@
     <string name="removeButton">Moins</string>
     <string name="commandButton">Ajouter</string>
     <string name="playButton">Lancez le scan</string>
+    <string name="ble_scan_pause_title">Lancez le scan..</string>
+    <string name="ble_scan_play_title">recherche..</string>
+
 
 
 </resources>

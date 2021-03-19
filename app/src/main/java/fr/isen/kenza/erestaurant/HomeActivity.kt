@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
+import fr.isen.kenza.erestaurant.categories.BleScanActivity
 import fr.isen.kenza.erestaurant.categories.CategoryActivity
 import fr.isen.kenza.erestaurant.categories.ItemType
 import fr.isen.kenza.erestaurant.databinding.HomeActivityBinding
@@ -19,7 +20,9 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = HomeActivityBinding.inflate(layoutInflater)
+
+
+        binding = fr.isen.kenza.erestaurant.databinding.HomeActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val mainAction = findViewById<Button>(R.id.buttonStarters)
@@ -59,7 +62,15 @@ class HomeActivity : AppCompatActivity() {
            // startActivity(intent)
             startCategoryActivity(ItemType.DESSERT)
         }
+        binding.buttonBle.setOnClickListener{
+            val intent = Intent(this, BleScanActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
+
+
 
 
     private fun startCategoryActivity(item: ItemType) {
