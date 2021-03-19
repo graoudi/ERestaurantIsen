@@ -24,6 +24,11 @@ data class Dish(@SerializedName("name_fr") val name: String,
     fun formatPrice()= prices[0].price  + "€"
     fun getJustPrice() = prices[0].price
 
+    fun getAllPictures() = if(images != null && images.isNotEmpty() && images.any {it.isNotEmpty()}) {
+        images.filter { it.isNotEmpty() }
+    }else {
+        null
+    }
 
 }
 

@@ -1,11 +1,12 @@
 package fr.isen.kenza.erestaurant.categories
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import fr.isen.kenza.erestaurant.Data.Dish
-import fr.isen.kenza.erestaurant.Data.Ingredient
-import fr.isen.kenza.erestaurant.R
+import fr.isen.kenza.erestaurant.RecyclerAdapter
 import fr.isen.kenza.erestaurant.databinding.ActivityDetailsActivitiesBinding
 
 class DetailsActivities : AppCompatActivity() {
@@ -24,6 +25,7 @@ class DetailsActivities : AppCompatActivity() {
         binding.dishIngredient.text = dish?.ingredients?.map { it.name }?.joinToString(", ")
         binding.dishPrice.text = dish?.getPrice()
 
+
         if(dish?.urlImage().isNullOrEmpty()){
             Picasso.get()
                     .load("http://i.imgur.com/DvpvklR.png")
@@ -35,9 +37,15 @@ class DetailsActivities : AppCompatActivity() {
                     .into(binding.imageCarou)
         }
 
+
+
+
+
         binding.addButton.setOnClickListener {
             quantity ++
             binding.totalOrder.text = quantity.toString()
+            var test = dish?.getJustPrice()?.toFloat()?.times(quantity)
+            binding.total.text = test.toString() + "euros"
             }
 
 
@@ -46,6 +54,8 @@ class DetailsActivities : AppCompatActivity() {
             if (quantity > 0)
                 quantity --
             binding.totalOrder.text = quantity.toString()
+            var test = dish?.getJustPrice()?.toFloat()?.times(quantity)
+            binding.total.text = test.toString() + "euros"
             }
 
 

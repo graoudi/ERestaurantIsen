@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ERestaurant">
-        <activity android:name=".categories.DetailsActivities"></activity>
+        <activity android:name=".categories.BleScanActivity"></activity>
+        <activity android:name=".categories.BleActivity" />
+        <activity android:name=".categories.FragmentCaroussel" />
+        <activity android:name=".categories.DetailsActivities" />
         <activity android:name=".categories.CategoryActivity" />
         <activity android:name=".categories.DetailsActivity" />
         <activity android:name=".HomeActivity">

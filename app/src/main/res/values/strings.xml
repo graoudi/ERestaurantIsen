@@ -12,6 +12,7 @@
     <string name="addButton">Plus</string>
     <string name="removeButton">Moins</string>
     <string name="commandButton">Ajouter</string>
+    <string name="playButton">Lancez le scan</string>
 
 
 </resources>
