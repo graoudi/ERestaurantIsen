@@ -26,6 +26,7 @@ class DetailsActivities : AppCompatActivity() {
         binding.dishPrice.text = dish?.getPrice()
 
 
+
         if(dish?.urlImage().isNullOrEmpty()){
             Picasso.get()
                     .load("http://i.imgur.com/DvpvklR.png")
