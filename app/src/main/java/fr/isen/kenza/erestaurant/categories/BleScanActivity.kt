@@ -23,7 +23,8 @@ class BleScanActivity : AppCompatActivity() {
 
 
     private var isScanning = false
-    private val bluetoothAdapter: BluetoothAdapter? = null
+    private var bluetoothAdapter: BluetoothAdapter? = null
+
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,28 +32,11 @@ class BleScanActivity : AppCompatActivity() {
         binding = ActivityBleScanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bluetoothManager = getSystemService(BluetoothManager::class.java)
-        val bluetoothAdapter: BluetoothAdapter? = bluetoothManager?.adapter
 
-        when{
-            //premier cas
-            !isDeviceHasBLESupport()  ||  bluetoothAdapter == null -> {
-                Toast.makeText(this, "cet appareil n'est pas compatible", Toast.LENGTH_SHORT).show()
-            }
-            //si je ne suis pas dans le premier cas alors
-            //ici il a le ble mais pas active
-            !bluetoothAdapter.isEnabled ->{
-                //je dois activer le ble
-                val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT) //attend un resultat quand c'est fini
+         bluetoothAdapter= getSystemService(BluetoothManager::class.java)?.adapter
 
-            }
-            else -> {
-            // youpi on peut faire de ble
+        startBLEifPossible()
 
-            }
-
-        }
         isDeviceHasBLESupport()
 
         binding.playButton.setOnClickListener{
@@ -63,10 +47,35 @@ class BleScanActivity : AppCompatActivity() {
         }
     }
 
+    private fun startBLEifPossible() {
+        when {
+            //premier cas
+            !isDeviceHasBLESupport() || bluetoothAdapter == null -> {
+                Toast.makeText(this, "cet appareil n'est pas compatible", Toast.LENGTH_SHORT).show()
+            }
+            //si je ne suis pas dans le premier cas alors
+            //ici il a le ble mais pas active
+            !(bluetoothAdapter?.isEnabled  ?: false) -> {
+                //je dois activer le ble
+                val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                startActivityForResult(
+                    enableBtIntent,
+                    REQUEST_ENABLE_BT
+                ) //attend un resultat quand c'est fini
+
+            }
+            else -> {
+                // youpi on peut faire de ble
+
+            }
+
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == REQUEST_ENABLE_BT && resultCode == Activity.RESULT_OK){
-
+            startBLEifPossible()
         }
     }
 
