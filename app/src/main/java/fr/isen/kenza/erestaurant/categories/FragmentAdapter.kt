@@ -1,11 +1,9 @@
 package fr.isen.kenza.erestaurant.categories
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import fr.isen.kenza.erestaurant.categories.CarouselFragment.Companion.ARG_OBJECT
-
 
 class FragmentAdapter(activity: AppCompatActivity, val list: List<String?>): FragmentStateAdapter(activity) {
 
@@ -16,7 +14,7 @@ class FragmentAdapter(activity: AppCompatActivity, val list: List<String?>): Fra
     override fun createFragment(position: Int): Fragment {
         val fragment = CarouselFragment()
         fragment.arguments = Bundle().apply{
-            putString(ARG_OBJECT, list[position])
+            putString(CarouselFragment.ARG_OBJECT, list[position])
         }
         return fragment
     }

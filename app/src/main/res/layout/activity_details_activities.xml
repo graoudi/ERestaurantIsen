@@ -56,8 +56,7 @@
             android:textColor="#F7AC75"
             app:layout_constraintBottom_toTopOf="@+id/totalOrder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageCarou" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/addButton"
@@ -98,21 +97,6 @@
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toEndOf="@+id/removeButton" />
 
-        <ImageView
-            android:id="@+id/imageCarou"
-            android:layout_width="186dp"
-            android:layout_height="135dp"
-            android:layout_marginStart="145dp"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="180dp"
-            android:layout_marginRight="180dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dishTitle">
-
-        </ImageView>
-
 
         <TextView
             android:id="@+id/total"
@@ -126,6 +110,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/totalOrder" />
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/imageCarou"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="157dp"
+            android:layout_marginLeft="157dp"
+            android:layout_marginEnd="126dp"
+            android:layout_marginRight="126dp"
+            app:layout_constraintBottom_toTopOf="@+id/dishPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dishIngredient"
+            app:layout_constraintVertical_bias="0.213"
+            tools:srcCompat="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

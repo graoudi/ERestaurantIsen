@@ -13,9 +13,10 @@ import fr.isen.kenza.erestaurant.R
 import fr.isen.kenza.erestaurant.databinding.CarousselItemBinding
 
 
+
 private lateinit var binding: CarousselItemBinding
 
-class CarouselFragment(): Fragment() {
+class CarouselFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = CarousselItemBinding.inflate(inflater, container, false)
@@ -24,10 +25,10 @@ class CarouselFragment(): Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments?.getString(ARG_OBJECT)?.let {
-            Picasso.get()
-                .load(it)
-                .into(binding.imageCarousel)
+
+        arguments?.getString("url")?.let {
+           // Picasso.get().load(it).into(binding.carouselView)
+
         }
     }
 
@@ -35,3 +36,8 @@ class CarouselFragment(): Fragment() {
         const val ARG_OBJECT = "object"
     }
 }
+
+
+
+
+
