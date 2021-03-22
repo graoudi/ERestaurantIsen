@@ -4,7 +4,6 @@ package fr.isen.kenza.erestaurant.categories
 import android.Manifest
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.le.BluetoothLeScanner
 import android.bluetooth.le.ScanCallback
@@ -12,18 +11,17 @@ import android.bluetooth.le.ScanResult
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.kenza.erestaurant.R
 import fr.isen.kenza.erestaurant.RecyclerAdapter
 import fr.isen.kenza.erestaurant.databinding.ActivityBleScanBinding
-
 
 
 private lateinit var binding: ActivityBleScanBinding
@@ -39,7 +37,6 @@ class BleScanActivity : AppCompatActivity() {
     private var scanning = false
     private var handler: Handler? = null
     private lateinit var leDeviceListAdapter: BleScanAdapter
-
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +58,8 @@ class BleScanActivity : AppCompatActivity() {
         binding.bleScanTitle.setOnClickListener{
             togglePlayPauseAction()
         }
+
+
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -159,10 +158,19 @@ class BleScanActivity : AppCompatActivity() {
 
     }
 
-    private fun  initRecyclerDevice(){
-        leDeviceListAdapter = BleScanAdapter((mutableListOf()))
-        binding.recyclerBleScan.layoutManager = LinearLayoutManager(this)
-        binding.recyclerBleScan.adapter = leDeviceListAdapter
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun  initRecyclerDevice() {
+       //
+        leDeviceListAdapter = BleScanAdapter((mutableListOf())){
+            val intent = Intent(this, DetailBleActivity::class.java)
+            intent.putExtra("ble",it)
+            startActivity(intent)
+        }
+         binding.recyclerBleScan.layoutManager = LinearLayoutManager(this)
+         binding.recyclerBleScan.adapter = leDeviceListAdapter
+
+
+
     }
 
     companion object {

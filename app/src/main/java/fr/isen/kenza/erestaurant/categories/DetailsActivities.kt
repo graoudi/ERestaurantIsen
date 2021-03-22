@@ -96,5 +96,6 @@ class DetailsActivities : AppCompatActivity() {
             }
 
 
+
         }
     }

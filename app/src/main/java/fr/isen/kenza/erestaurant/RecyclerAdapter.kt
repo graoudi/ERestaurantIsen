@@ -45,7 +45,7 @@ class RecyclerAdapter(
       val textTitle = binding.categoryName
       val textPicture= binding.catagoryImage
       val textPrice = binding.categoryprice
-      val layout = itemView.findViewById<View>(R.id.cellBleList)
+      val layout = itemView.findViewById<View>(R.id.cellList)
 
 
   }

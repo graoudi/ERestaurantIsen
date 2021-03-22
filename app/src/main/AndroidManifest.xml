@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ERestaurant">
-        <activity android:name=".categories.BleScanAdapter"></activity>
+        <activity android:name=".categories.DetailBleActivity"></activity>
+        <activity android:name=".categories.BleScanAdapter" />
         <activity android:name=".categories.BleScanActivity" />
         <activity android:name=".categories.BleActivity" />
         <activity android:name=".categories.FragmentCaroussel" />
