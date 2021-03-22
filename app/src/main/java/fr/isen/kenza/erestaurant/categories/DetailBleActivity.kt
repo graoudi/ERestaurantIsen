@@ -19,9 +19,10 @@ class DetailBleActivity : AppCompatActivity() {
         binding = ActivityDetailBleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val test = intent.getSerializableExtra("test") as? ScanResult
-        binding.detailBle.text =  test?.device.toString()
-
+        //val testBle = intent.getSerializableExtra("ble") as? ScanResult
+       val essaiBle = intent.getSerializableExtra("essaiBle") as? ScanResult
+       binding.detailBle.text =  "hello"
+     //   binding.detailBle.text =  essaiBle?.device.toString()
 
     }
 }

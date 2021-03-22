@@ -24,9 +24,9 @@ import fr.isen.kenza.erestaurant.RecyclerAdapter
 import fr.isen.kenza.erestaurant.databinding.ActivityBleScanBinding
 
 
-private lateinit var binding: ActivityBleScanBinding
 
 class BleScanActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityBleScanBinding
 
     private val permissionDeniedList = ArrayList<String>()
     private var isScanning = false
@@ -36,7 +36,7 @@ class BleScanActivity : AppCompatActivity() {
     private var bluetoothLeScanner: BluetoothLeScanner? = null
     private var scanning = false
     private var handler: Handler? = null
-    private lateinit var leDeviceListAdapter: BleScanAdapter
+    private  var leDeviceListAdapter: BleScanAdapter? = null
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,10 +116,10 @@ class BleScanActivity : AppCompatActivity() {
             val test = result.scanRecord?.deviceName?.toString()
 
             super.onScanResult(callbackType, result)
-            leDeviceListAdapter.addDevice(result)
+            leDeviceListAdapter?.addDevice(result)
            // leDeviceListAdapter.addDevice(test)
 
-            leDeviceListAdapter.notifyDataSetChanged()
+            leDeviceListAdapter?.notifyDataSetChanged()
         }
     }
 
@@ -160,7 +160,7 @@ class BleScanActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun  initRecyclerDevice() {
-       //
+
         leDeviceListAdapter = BleScanAdapter((mutableListOf())){
             val intent = Intent(this, DetailBleActivity::class.java)
             intent.putExtra("ble",it)
@@ -169,8 +169,15 @@ class BleScanActivity : AppCompatActivity() {
          binding.recyclerBleScan.layoutManager = LinearLayoutManager(this)
          binding.recyclerBleScan.adapter = leDeviceListAdapter
 
-
-
+/*
+        binding.recyclerBleScan.adapter = BleScanAdapter((mutableListOf())) {
+            val intent = Intent(this, DetailBleActivity::class.java)
+            intent.putExtra("essaiBle", it)
+            startActivity(intent)
+        }
+        binding.recyclerBleScan.layoutManager = LinearLayoutManager(this)
+        binding.recyclerBleScan.adapter = leDeviceListAdapter
+*/
     }
 
     companion object {

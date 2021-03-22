@@ -36,7 +36,7 @@ class BleScanAdapter
        holder.nameTitle.text = listBle[position].scanRecord?.deviceName.toString()
         holder.numID.text = listBle[position].scanRecord?.advertiseFlags.toString()
 
-      holder.layout.setOnClickListener { listener.invoke(listBle[position]) }
+      holder.layoutBle.setOnClickListener { listener.invoke(listBle[position]) }
 
     }
 
@@ -47,7 +47,7 @@ class BleScanAdapter
         val textTitle: TextView = itemView.findViewById(R.id.adressDevice)
         val nameTitle: TextView = itemView.findViewById(R.id.nameDevice)
         val numID: TextView = itemView.findViewById(R.id.buttonNumber)
-        val layout = itemView.findViewById<View>(R.id.cellBleList)
+        val layoutBle = itemView.findViewById<View>(R.id.cellBluetooth)
 
     }
 
