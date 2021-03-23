@@ -4,6 +4,7 @@ package fr.isen.kenza.erestaurant.categories
 import android.Manifest
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.le.BluetoothLeScanner
 import android.bluetooth.le.ScanCallback
@@ -20,7 +21,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.isen.kenza.erestaurant.R
-import fr.isen.kenza.erestaurant.RecyclerAdapter
 import fr.isen.kenza.erestaurant.databinding.ActivityBleScanBinding
 
 
@@ -113,7 +113,7 @@ class BleScanActivity : AppCompatActivity() {
     private val leScanCallback: ScanCallback = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     object : ScanCallback() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
-            val test = result.scanRecord?.deviceName?.toString()
+          //  val test = result.scanRecord?.deviceName?.toString()
 
             super.onScanResult(callbackType, result)
             leDeviceListAdapter?.addDevice(result)
@@ -160,24 +160,19 @@ class BleScanActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun  initRecyclerDevice() {
+        binding.recyclerBleScan.layoutManager = LinearLayoutManager(this)
 
         leDeviceListAdapter = BleScanAdapter((mutableListOf())){
-            val intent = Intent(this, DetailBleActivity::class.java)
-            intent.putExtra("ble",it)
-            startActivity(intent)
+            val dataBle = Intent(this, DetailBleActivity::class.java)
+            dataBle.putExtra(BluetoothDevice.EXTRA_DEVICE, it.device)
+
+         //   dataBle.putExtra("bluetooth",it)
+            startActivity(dataBle)
         }
-         binding.recyclerBleScan.layoutManager = LinearLayoutManager(this)
          binding.recyclerBleScan.adapter = leDeviceListAdapter
 
-/*
-        binding.recyclerBleScan.adapter = BleScanAdapter((mutableListOf())) {
-            val intent = Intent(this, DetailBleActivity::class.java)
-            intent.putExtra("essaiBle", it)
-            startActivity(intent)
-        }
-        binding.recyclerBleScan.layoutManager = LinearLayoutManager(this)
-        binding.recyclerBleScan.adapter = leDeviceListAdapter
-*/
+
+
     }
 
     companion object {

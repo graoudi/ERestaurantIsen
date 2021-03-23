@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import fr.isen.kenza.erestaurant.R
 import fr.isen.kenza.erestaurant.databinding.CellBleDevicesBinding
@@ -16,13 +15,13 @@ import fr.isen.kenza.erestaurant.databinding.CellBleDevicesBinding
 
 class BleScanAdapter
 (private val listBle: MutableList<ScanResult>
- ,private val listener:  (ScanResult) -> Unit
-    ): RecyclerView.Adapter<BleScanAdapter.ViewHolder>() {
+ ,private val onClickListener:  (ScanResult) -> Unit
+    ): RecyclerView.Adapter<BleScanAdapter.BleViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BleViewHolder {
         val binding = CellBleDevicesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding.root)
+        return BleViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -31,19 +30,23 @@ class BleScanAdapter
 
 
    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onBindViewHolder( holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder( holder: BleViewHolder, position: Int) {
         holder.textTitle.text = listBle[position].device.toString()
-       holder.nameTitle.text = listBle[position].scanRecord?.deviceName.toString()
-        holder.numID.text = listBle[position].scanRecord?.advertiseFlags.toString()
 
-      holder.layoutBle.setOnClickListener { listener.invoke(listBle[position]) }
+       holder.nameTitle.text = listBle[position].device.name?: "Inconnu"
+
+       //holder.nameTitle.text = listBle[position].scanRecord?.deviceName.toString()
+        //holder.numID.text = listBle[position].scanRecord?.advertiseFlags.toString()
+       holder.numID.text = "${listBle[position].rssi} dBm"
+
+      holder.layoutBle.setOnClickListener { onClickListener.invoke(listBle[position]) }
 
     }
 
 
 
 
-     class ViewHolder(binding: ConstraintLayout) : RecyclerView.ViewHolder(binding){
+     class BleViewHolder(bleBinding: CellBleDevicesBinding) : RecyclerView.ViewHolder(bleBinding.root){
         val textTitle: TextView = itemView.findViewById(R.id.adressDevice)
         val nameTitle: TextView = itemView.findViewById(R.id.nameDevice)
         val numID: TextView = itemView.findViewById(R.id.buttonNumber)

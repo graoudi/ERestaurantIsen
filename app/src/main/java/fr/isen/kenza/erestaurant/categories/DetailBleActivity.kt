@@ -1,5 +1,7 @@
 package fr.isen.kenza.erestaurant.categories
 
+import android.annotation.SuppressLint
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.le.ScanResult
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +15,8 @@ import fr.isen.kenza.erestaurant.databinding.ActivityDetailsActivitiesBinding
 class DetailBleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBleBinding
 
+    private lateinit var data: BluetoothDevice
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +24,10 @@ class DetailBleActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //val testBle = intent.getSerializableExtra("ble") as? ScanResult
-       val essaiBle = intent.getSerializableExtra("essaiBle") as? ScanResult
-       binding.detailBle.text =  "hello"
-     //   binding.detailBle.text =  essaiBle?.device.toString()
+      // val dataBle = intent.getSerializableExtra("bluetooth") as? BluetoothDevice
+   //   binding.detailBluetooth.text =  "hello"
+        data = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)  ?: error("Missing BluetoothDevice from MainActivity!")
+      binding.detailBluetooth.text =  data?.address
 
     }
 }

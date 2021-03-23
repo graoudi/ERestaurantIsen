@@ -61,18 +61,6 @@ class DetailsActivities : AppCompatActivity() {
 
         binding.imageCarou.setImageListener(imageListener)
        // binding.imageCarou.setImageListener(imageListener)
-        /*
-
-        if(dish?.urlImage().isNullOrEmpty()){
-            Picasso.get()
-                    .load("http://i.imgur.com/DvpvklR.png")
-                    .into(binding.imageCarou)
-        }
-        else {
-            Picasso.get()
-                    .load(dish?.urlImage())
-                    .into(binding.imageCarou)
-        }*/
 
 
 

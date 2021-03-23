@@ -9,10 +9,8 @@
 
     <TextView
         android:id="@+id/adressDevice"
-        android:layout_width="100dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="153dp"
+        android:layout_height="30dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
         android:text="TextView"
@@ -26,8 +24,8 @@
         android:id="@+id/nameDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
         android:textSize="12sp"
@@ -36,14 +34,14 @@
 
     <Button
         android:id="@+id/buttonNumber"
-        android:layout_width="68dp"
-        android:layout_height="40dp"
+        android:layout_width="83dp"
+        android:layout_height="46dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="24dp"
         android:text="Button"
         android:textColor="#090808"
-        android:textSize="12sp"
+        android:textSize="8sp"
         app:backgroundTint="#FFC107"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
