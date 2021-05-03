@@ -116,9 +116,9 @@ class BleScanActivity : AppCompatActivity() {
           //  val test = result.scanRecord?.deviceName?.toString()
 
             super.onScanResult(callbackType, result)
-            leDeviceListAdapter?.addDevice(result)
-           // leDeviceListAdapter.addDevice(test)
 
+
+            leDeviceListAdapter?.addDevice(result)
             leDeviceListAdapter?.notifyDataSetChanged()
         }
     }

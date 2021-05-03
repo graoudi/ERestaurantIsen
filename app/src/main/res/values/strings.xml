@@ -45,11 +45,11 @@
     <string name="ble_device_status_connected">connecte </string>
     <string name="ble_device_status_disconnected">deconnecte </string>
     <string name="ble_device_status_disconnecting">deconnetion </string>
-    <string name="notifier">notifie</string>
+    <string name="notifier">notify</string>
     <string name="Propriete">propriete</string>
     <string name="Valeur">valeur</string>
-    <string name="lecture">lecture</string>
-    <string name="ecrire">ecrire</string>
+    <string name="lecture">read</string>
+    <string name="ecrire">write</string>
     <string name="NomParent">nom</string>
 
 
