@@ -1,7 +1,6 @@
-package fr.isen.kenza.erestaurant.categories
+package fr.isen.kenza.erestaurant.ble
 
 import android.bluetooth.le.ScanResult
-import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -30,15 +29,13 @@ class BleScanAdapter
 
 
    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onBindViewHolder( holder: BleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BleViewHolder, position: Int) {
         holder.textTitle.text = listBle[position].device.toString()
 
-       holder.nameTitle.text = listBle[position].device.name?: "Inconnu"
-
-       //holder.nameTitle.text = listBle[position].scanRecord?.deviceName.toString()
+       holder.nameTitle.text = listBle[position].device.name?: "Unknown"
+     //  holder.nameTitle.text = listBle[position].scanRecord?.deviceName.toString()
         //holder.numID.text = listBle[position].scanRecord?.advertiseFlags.toString()
        holder.numID.text = "${listBle[position].rssi} dBm"
-
       holder.layoutBle.setOnClickListener { onClickListener.invoke(listBle[position]) }
 
     }

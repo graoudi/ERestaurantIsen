@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="fr.isen.kenza.erestaurant">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,14 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ERestaurant">
-        <activity android:name=".categories.DetailBleActivity"></activity>
-        <activity android:name=".categories.BleScanAdapter" />
-        <activity android:name=".categories.BleScanActivity" />
-        <activity android:name=".categories.BleActivity" />
-        <activity android:name=".categories.FragmentCaroussel" />
+
+        <activity android:name=".ble.DetailBleActivity" />
+        <activity android:name=".ble.BleScanAdapter"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".ble.BleScanActivity" />
         <activity android:name=".categories.DetailsActivities" />
         <activity android:name=".categories.CategoryActivity" />
-        <activity android:name=".categories.DetailsActivity" />
+
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

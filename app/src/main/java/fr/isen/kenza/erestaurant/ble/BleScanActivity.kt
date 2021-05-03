@@ -1,4 +1,4 @@
-package fr.isen.kenza.erestaurant.categories
+package fr.isen.kenza.erestaurant.ble
 
 
 import android.Manifest
@@ -81,7 +81,7 @@ class BleScanActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED -> {
                 ActivityCompat.requestPermissions( this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_PERMISSION_LOCATION)
+                        REQUEST_PERMISSION_LOCATION)
             }
             else -> {
                 // youpi on peut faire de ble
@@ -162,12 +162,17 @@ class BleScanActivity : AppCompatActivity() {
     private fun  initRecyclerDevice() {
         binding.recyclerBleScan.layoutManager = LinearLayoutManager(this)
 
-        leDeviceListAdapter = BleScanAdapter((mutableListOf())){
-            val dataBle = Intent(this, DetailBleActivity::class.java)
-            dataBle.putExtra(BluetoothDevice.EXTRA_DEVICE, it.device)
+        leDeviceListAdapter = BleScanAdapter((mutableListOf())) {
+           // val dataBle = Intent(this, DetailBleActivity::class.java)
 
-         //   dataBle.putExtra("bluetooth",it)
-            startActivity(dataBle)
+            val intent = Intent(this, DetailBleActivity::class.java)
+            //intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, it.device.name)
+           // intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, it.device.address)
+
+           intent.putExtra("ble_device", it.device)
+
+           // startActivity(dataBle)
+            startActivity(intent)
         }
          binding.recyclerBleScan.adapter = leDeviceListAdapter
 

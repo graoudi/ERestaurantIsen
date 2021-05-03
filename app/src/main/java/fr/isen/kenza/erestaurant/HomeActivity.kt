@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import fr.isen.kenza.erestaurant.categories.BleScanActivity
+import fr.isen.kenza.erestaurant.ble.BleScanActivity
 import fr.isen.kenza.erestaurant.categories.CategoryActivity
 import fr.isen.kenza.erestaurant.categories.ItemType
 import fr.isen.kenza.erestaurant.databinding.HomeActivityBinding

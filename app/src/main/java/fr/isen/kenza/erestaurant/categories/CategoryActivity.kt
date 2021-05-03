@@ -11,7 +11,6 @@ import com.google.gson.GsonBuilder
 import fr.isen.kenza.erestaurant.Data.Dish
 import fr.isen.kenza.erestaurant.Data.ResultData
 import fr.isen.kenza.erestaurant.HomeActivity
-import fr.isen.kenza.erestaurant.RecyclerAdapter
 import fr.isen.kenza.erestaurant.databinding.ActivityCategoriesBinding
 import org.json.JSONObject
 
@@ -78,7 +77,7 @@ class CategoryActivity : AppCompatActivity() {
         binding.recyclerList.layoutManager = LinearLayoutManager(this)
         binding.recyclerList.adapter = RecyclerAdapter(items) {
             val intent = Intent(this, DetailsActivities::class.java)
-            intent.putExtra("dish",it)
+            intent.putExtra("dish", it)
             startActivity(intent)
         }
 

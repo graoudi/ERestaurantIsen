@@ -1,16 +1,13 @@
 package fr.isen.kenza.erestaurant.categories
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
 import fr.isen.kenza.erestaurant.Data.Dish
 import fr.isen.kenza.erestaurant.R
-import fr.isen.kenza.erestaurant.RecyclerAdapter
 import fr.isen.kenza.erestaurant.databinding.ActivityDetailsActivitiesBinding
 
 class DetailsActivities : AppCompatActivity() {

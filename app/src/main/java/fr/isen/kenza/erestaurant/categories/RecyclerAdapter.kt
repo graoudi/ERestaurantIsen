@@ -1,4 +1,4 @@
-package fr.isen.kenza.erestaurant
+package fr.isen.kenza.erestaurant.categories
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.kenza.erestaurant.Data.Dish
+import fr.isen.kenza.erestaurant.R
 import fr.isen.kenza.erestaurant.databinding.DishesDetailBinding
 
 
@@ -24,7 +25,7 @@ class RecyclerAdapter(
     }
 
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dish = entries[position]
         holder.textTitle.text = entries[position].name
         holder.textPrice.text = entries[position].formatPrice()
