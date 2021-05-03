@@ -45,8 +45,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerBleScan"
-        android:layout_width="300dp"
-        android:layout_height="350dp"
+        android:layout_width="410dp"
+        android:layout_height="614dp"
         android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
