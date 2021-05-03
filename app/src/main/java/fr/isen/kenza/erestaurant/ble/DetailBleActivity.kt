@@ -34,7 +34,7 @@ class DetailBleActivity : AppCompatActivity() {
 
         bluetoothGatt = device?.connectGatt(this, true, gattCallback)
         binding.deviceName.text = device?.name ?: "Appareil Inconnu"
-        bluetoothGatt?.connect()
+        binding.deviceBleName.text = device?.address
         connectToDevice(device)
     }
 
