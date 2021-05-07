@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/fond"
     tools:context=".HomeActivity">
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="211dp"
