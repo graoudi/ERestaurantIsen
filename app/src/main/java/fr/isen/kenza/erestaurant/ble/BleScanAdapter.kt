@@ -32,7 +32,7 @@ class BleScanAdapter
     override fun onBindViewHolder(holder: BleViewHolder, position: Int) {
         holder.textTitle.text = listBle[position].device.toString()
 
-       holder.nameTitle.text = listBle[position].device.name?: "Unknown"
+       holder.nameTitle.text = listBle[position].device.name?: "Inco"
       //holder.nameTitle.text = listBle[position].scanRecord?.deviceName.toString()
         //holder.numID.text = listBle[position].scanRecord?.advertiseFlags.toString()
        holder.numID.text = "${listBle[position].rssi} dBm"
@@ -53,7 +53,7 @@ class BleScanAdapter
 
 
     fun addDevice(data: ScanResult ) {
-        if (!listBle.contains(data) ) {
+        if (! listBle.contains(data) ) {
             listBle.add(data)
 
           //  listBle.add(name)

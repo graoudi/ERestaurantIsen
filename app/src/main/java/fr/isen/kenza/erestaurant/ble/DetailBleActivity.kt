@@ -50,7 +50,7 @@ class DetailBleActivity : AppCompatActivity() {
             when (newState) {
                 BluetoothProfile.STATE_CONNECTED -> {
                     runOnUiThread {
-                        statut += STATE_CONNECTED
+                        statut = STATE_CONNECTED
                         binding.deviceStatut.text = statut
                     }
                     bluetoothGatt?.discoverServices()
@@ -86,6 +86,8 @@ class DetailBleActivity : AppCompatActivity() {
             runOnUiThread {
                 binding.recyclerBLEDetail.adapter?.notifyDataSetChanged()
             }
+
+            
         }
         override fun onCharacteristicChanged(
             gatt: BluetoothGatt,

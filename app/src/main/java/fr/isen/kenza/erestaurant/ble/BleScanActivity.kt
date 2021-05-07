@@ -109,14 +109,13 @@ class BleScanActivity : AppCompatActivity() {
         }
     }
 
+    private val scanResults = mutableListOf<ScanResult>()
     // Device scan callback.
     private val leScanCallback: ScanCallback = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     object : ScanCallback() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
-          //  val test = result.scanRecord?.deviceName?.toString()
 
             super.onScanResult(callbackType, result)
-
 
             leDeviceListAdapter?.addDevice(result)
             leDeviceListAdapter?.notifyDataSetChanged()
